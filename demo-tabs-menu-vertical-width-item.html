@@ -10,7 +10,7 @@
   <title>Document</title>
 </head>
 <style>
-  .tabs {
+  #tabs {
     padding: 0;
     margin: 0;
     list-style: none;
@@ -18,7 +18,7 @@
     flex-direction: column;
   }
 
-  .tabs li {
+  #tabs li {
     display: inline-block;
     background-color: cadetblue;
     padding: 5px 10px;
@@ -28,11 +28,11 @@
     transition: all 0.3 ease-in-out;
   }
 
-  .tabs li.active {
+  #tabs .item.active li {
     background-color: brown;
   }
 
-  .tab_content {
+  #tabs .tab_content {
     padding: 10px;
     background-color: cornflowerblue;
     color: white;
@@ -42,23 +42,31 @@
 </style>
 
 <body>
-  <ul id="tabCotents" class="tabs">
-    <div class="tab_content">
-      <p>Content 1</p>
+  <ul id="tabs">
+    <div class="item">
+      <div class="tab_content">
+        <p>Content 1</p>
+      </div>
+      <li>Tab 1</li>
     </div>
-    <li>Tab 1</li>
-    <div class="tab_content">
-      <p>Content 2</p>
+    <div class="item">
+      <div class="tab_content">
+        <p>Content 2</p>
+      </div>
+      <li>Tab 2</li>
     </div>
-    <li>Tab 2</li>
-    <div class="tab_content">
-      <p>Content 3</p>
+    <div class="item">
+      <div class="tab_content">
+        <p>Content 3</p>
+      </div>
+      <li>Tab 3</li>
     </div>
-    <li>Tab 3</li>
-    <div class="tab_content">
-      <p>Content 4</p>
+    <div class="item">
+      <div class="tab_content">
+        <p>Content 4</p>
+      </div>
+      <li>Tab 4</li>
     </div>
-    <li>Tab 4</li>
   </ul>
   <script>
     // $(document).ready(function () {
@@ -74,37 +82,28 @@
     //   });
     // });
 
-    // $(document).ready(function () {
-    //   $('.tab_content:first').show();
-    //   $('.tabs li:first').addClass('active');
-
-    //   $('.tabs li').click(function (event) {
-    //     index = $(this).index();
-    //     if ($('.tabs li').hasClass("active")) {
-    //       $('.tab_content').hide();
-    //       $('.tabs li').removeClass('active');
-    //     } else {
-    //       $('.tabs li').removeClass('active');
-    //       $(this).addClass('active');
-    //       $('.tab_content').hide();
-    //       $('.tab_content').eq(index / 2).show();
-    //     }
-    //   });
-    // });
-
     $(document).ready(function () {
-      $('#tabCotents .tab_content:first').show();
-      $('#tabCotents li:first').addClass('active');
+      $('#tabs .tab_content:first').show();
+      $('#tabs .item:first').addClass('active');
 
-      $('#tabCotents li').click(function (event) {
+      $('#tabs .item').click(function (event) {
         index = $(this).index();
-          $('#tabCotents li').removeClass('active');
+        console.log(index);
+        if ($(this).hasClass("active")) {
+          $('#tabs .tab_content').hide();
+          $('#tabs .item').removeClass('active');
+        } else {
+          $('#tabs .item').removeClass('active');
           $(this).addClass('active');
-          $('#tabCotents .tab_content').hide();
-          console.log((index+1)/2-1);
-          // $('#tabCotents .tab_content').eq((index+1)/2-1).show();
-        });
+          $('#tabs .tab_content').hide();
+          console.log(index);
+          $('#tabs .tab_content').eq(index).show();
+        }
+      });
     });
+
+
+
 
   </script>
 </body>
